@@ -4,7 +4,7 @@
 //загрузка курсов с апи
 
 async function fetchCourses() {
-    const apiUrl = "http://exam-api-courses.std-900.ist.mospolytech.ru/api/courses?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd";
+    const apiUrl = "https://exam-api-courses.std-900.ist.mospolytech.ru/api/courses?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd";
     try {
         const response = await fetch(apiUrl);
         allCourses = await response.json();
@@ -273,13 +273,13 @@ function showCourseDetails(courseId) {
 
 // инфу о репетиторах тоже получаем через апи
 async function fetchTutors() {
-    const apiUrl = "http://exam-api-courses.std-900.ist.mospolytech.ru/api/tutors?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd";
+    const apiUrl = "https://exam-api-courses.std-900.ist.mospolytech.ru/api/tutors?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd";
 
     try {
         const response = await fetch(apiUrl);
 
         if (!response.ok) {
-            throw new Error(`Ошибка HTTP: ${response.status}`);
+            throw new Error(`Ошибка https: ${response.status}`);
         }
 
         allTutors = await response.json(); 
@@ -385,7 +385,7 @@ async function submitBookingForm(event) {
     try {
         // отправка данных на сервер
         const response = await fetch(
-            "http://exam-api-courses.std-900.ist.mospolytech.ru/api/orders?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd",
+            "https://exam-api-courses.std-900.ist.mospolytech.ru/api/orders?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -487,7 +487,7 @@ document.getElementById("applicationForm").addEventListener("submit", async (eve
         console.log(requestData);
 
         const response = await fetch(
-            "http://exam-api-courses.std-900.ist.mospolytech.ru/api/orders?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd",
+            "https://exam-api-courses.std-900.ist.mospolytech.ru/api/orders?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
