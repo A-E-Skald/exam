@@ -1,4 +1,4 @@
-const apiUrl = "https://exam-api-courses.std-900.ist.mospolytech.ru/api/orders?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd"; // URL API для получения заказов
+const apiUrl = "http://exam-api-courses.std-900.ist.mospolytech.ru/api/orders?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd"; // URL API для получения заказов
 let currentPage = 1; // текущая страница для пагинации
 const ordersPerPage = 5; 
 
@@ -97,14 +97,14 @@ function displayPagination(currentPage, totalPages) {
 
 // для отображения деталей заказа
 async function showDetails(orderId) {
-    const apiUrl = `https://exam-api-courses.std-900.ist.mospolytech.ru/api/orders/${orderId}?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd`;
+    const apiUrl = `http://exam-api-courses.std-900.ist.mospolytech.ru/api/orders/${orderId}?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd`;
 
     try {
 
         const response = await fetch(apiUrl);
 
         if (!response.ok) {
-            throw new Error(`Ошибка https: ${response.status}`);
+            throw new Error(`Ошибка http: ${response.status}`);
         }
 
         const order = await response.json();
@@ -139,7 +139,7 @@ async function editOrder(orderId) {
     orderIdToEdit = orderId; 
 
     try {
-        const response = await fetch(`https://exam-api-courses.std-900.ist.mospolytech.ru/api/orders/${orderId}?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd`);
+        const response = await fetch(`http://exam-api-courses.std-900.ist.mospolytech.ru/api/orders/${orderId}?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd`);
         if (!response.ok) {
             throw new Error(`Ошибка получения данных заказа: ${response.status}`);
         }
@@ -177,7 +177,7 @@ async function saveOrderChanges(event) {
         updatedData.persons = parseInt(document.getElementById("editPersons").value, 10);
         updatedData.price = parseFloat(document.getElementById("editPrice").value);
         
-        const response = await fetch(`https://exam-api-courses.std-900.ist.mospolytech.ru/api/orders/${orderIdToEdit}?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd`, {
+        const response = await fetch(`http://exam-api-courses.std-900.ist.mospolytech.ru/api/orders/${orderIdToEdit}?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedData),
@@ -218,7 +218,7 @@ async function deleteOrder() {
     if (!orderIdToDelete) return;
 
     try {
-        const response = await fetch(`https://exam-api-courses.std-900.ist.mospolytech.ru/api/orders/${orderIdToDelete}?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd`, 
+        const response = await fetch(`http://exam-api-courses.std-900.ist.mospolytech.ru/api/orders/${orderIdToDelete}?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd`, 
         { method: "DELETE" });
 
         if (!response.ok) {
@@ -246,7 +246,7 @@ async function deleteOrder() {
 
 // чтобы потом доставать название курса по айдишнику
 async function fetchCourses() {
-    const apiUrl = "https://exam-api-courses.std-900.ist.mospolytech.ru/api/courses?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd";
+    const apiUrl = "http://exam-api-courses.std-900.ist.mospolytech.ru/api/courses?api_key=cff8ac16-8306-46e8-92c0-02dbd4dd28bd";
     try {
         const response = await fetch(apiUrl);
         allCourses = await response.json();
